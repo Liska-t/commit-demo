@@ -1,7 +1,5 @@
 # commit-demo
 
-What git commands are you using regularly?
-
 TLDR: 
 ## Single commit with explanation in commit msg body
 - Esp. for squash and merge PRs: `fixup` all commits and edit msg to describe full set of changes.
