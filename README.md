@@ -26,9 +26,14 @@ TLDR:
 2. The agent creates an `agent/` branch from that `feature/` branch.
 3. The agent makes changes only on that `agent/` branch and opens a PR targeting the same `feature/` branch.
 4. The engineer reviews and validates the PR, then squash-and-merges the `agent/` PR into the `feature/` branch. Each merged PR creates one verified commit on `feature/`, so a `feature/` branch can eventually contain one to multiple verified commits.
+5. After merge, clean up by closing superseded PRs for the same task and deleting the merged `agent/` branch.
 
 ### Commit Amendment Limitation In GitHub MCP Flow
 - Via GitHub MCP, the agent cannot amend an existing commit in place; corrections may require follow-up commits on the same PR branch.
 - During squash merge, the engineer should remove housekeeping follow-up commit messages from the final squash commit message so the final commit message reflects the validated change set.
+
+### Cleanup Automation Note
+- Deleting merged branches can run automatically if the repository setting to auto-delete merged branches is enabled.
+- If that setting is not enabled, cleanup is done manually after merge.
 
 Verification happens at engineer review and merge time, upstream of `main`. Because non-`agent/` branches only receive engineer-verified merges, only verified commits can land in `feature/` and then in `main`.
