@@ -1,7 +1,15 @@
 import { useState } from 'react'
 import './App.css'
 
-const pageMeta = {
+type PageKey = 'agenda' | 'practises' | 'agent-rules'
+
+interface PageMeta {
+  title: string
+  lead: string
+  navLabel: string
+}
+
+const pageMeta: Record<PageKey, PageMeta> = {
   agenda: {
     title: 'AGENDA',
     lead: 'Clear live session flow for commit and PR patterns.',
@@ -20,7 +28,7 @@ const pageMeta = {
 }
 
 export default function App() {
-  const [page, setPage] = useState('agenda')
+  const [page, setPage] = useState<PageKey>('agenda')
 
   return (
     <main className={`app page-${page}`}>
