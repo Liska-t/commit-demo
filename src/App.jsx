@@ -1,47 +1,49 @@
 import { useState } from 'react'
 import './App.css'
 
+const pageMeta = {
+  agenda: {
+    title: 'AGENDA',
+    lead: 'Clear live session flow for commit and PR patterns.',
+    navLabel: 'Home',
+  },
+  practises: {
+    title: 'Practises',
+    lead: 'Reference commands and guardrails for safe history cleanup.',
+    navLabel: 'Practises',
+  },
+  'agent-rules': {
+    title: 'Agent Rules',
+    lead: 'Operating constraints for agent-driven branch and PR workflow.',
+    navLabel: 'Agent Rules',
+  },
+}
+
 export default function App() {
   const [page, setPage] = useState('agenda')
 
-  const titleByPage = {
-    agenda: 'AGENDA',
-    practises: 'Practises',
-    'agent-rules': 'Agent Rules',
-  }
-
   return (
-    <main className="app">
+    <main className={`app page-${page}`}>
       <header className="hero">
         <p className="eyebrow">commit-demo</p>
-        <h1>{titleByPage[page]}</h1>
+        <h1>{pageMeta[page].title}</h1>
+        <p className="lead">{pageMeta[page].lead}</p>
         <nav className="nav">
-          <button
-            type="button"
-            className={page === 'agenda' ? 'nav-button active' : 'nav-button'}
-            onClick={() => setPage('agenda')}
-          >
-            Home
-          </button>
-          <button
-            type="button"
-            className={page === 'practises' ? 'nav-button active' : 'nav-button'}
-            onClick={() => setPage('practises')}
-          >
-            Practises
-          </button>
-          <button
-            type="button"
-            className={page === 'agent-rules' ? 'nav-button active' : 'nav-button'}
-            onClick={() => setPage('agent-rules')}
-          >
-            Agent Rules
-          </button>
+          {Object.entries(pageMeta).map(([key, value]) => (
+            <button
+              key={key}
+              type="button"
+              className={page === key ? 'nav-button active' : 'nav-button'}
+              onClick={() => setPage(key)}
+            >
+              {value.navLabel}
+            </button>
+          ))}
         </nav>
       </header>
 
       {page === 'agenda' ? (
-        <section className="panel">
+        <section className="panel panel-agenda">
           <h2>Agenda</h2>
           <ul className="agenda">
             <li>
@@ -68,7 +70,7 @@ export default function App() {
           </ul>
         </section>
       ) : page === 'practises' ? (
-        <section className="panel">
+        <section className="panel panel-practises">
           <h2>Single commit with explanation in commit msg body</h2>
           <ul>
             <li>
@@ -122,7 +124,7 @@ export default function App() {
           </ul>
         </section>
       ) : (
-        <section className="panel">
+        <section className="panel panel-agent-rules">
           <h2>Agent Branch Workflow Rules</h2>
           <ul>
             <li>
