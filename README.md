@@ -13,3 +13,12 @@ TLDR:
 ## Integration Test
 - Arbitrary change added on 2026-02-23 to validate GitHub MCP PR flow.
 - Creating a /feature branch for the agent to spin off of
+
+## Agent Workflow And Verified Commits To Main
+1. The engineer creates or identifies the relevant `feature/` branch for the task.
+2. The agent creates an `agent/` branch from that `feature/` branch.
+3. The agent makes changes only on that `agent/` branch and opens a PR targeting the same `feature/` branch.
+4. The engineer reviews and validates the PR changes before merging to the `feature/` branch.
+5. When ready for `main`, changes are merged using squash-and-merge.
+
+With this flow, `main` receives one squashed commit per reviewed PR, so only verified changes are merged into `main`.
