@@ -19,7 +19,7 @@ TLDR:
 2. The agent creates an `agent/` branch from that `feature/` branch.
 3. The agent makes changes only on that `agent/` branch and opens a PR targeting the same `feature/` branch.
 4. The engineer reviews and validates the PR changes before merging to the `feature/` branch.
-5. When ready for `main`, changes are merged using squash-and-merge.
+5. The engineer squash-and-merges the `agent/` PR into the `feature/` branch, creating a single verified commit on `feature/`.
 
 ### What Counts As An Obvious `feature/` Branch
 - The branch name starts with `feature/`.
@@ -27,4 +27,8 @@ TLDR:
 - There is no competing `feature/` branch that is equally plausible for the same task.
 - If any ambiguity remains, the branch is not obvious and the agent must ask the engineer.
 
-With this flow, `main` receives one squashed commit per reviewed PR, so only verified changes are merged into `main`.
+### Commit Amendment Limitation In GitHub MCP Flow
+- Via GitHub MCP, the agent cannot amend an existing commit in place; corrections may require follow-up commits on the same PR branch.
+- When squash-merging, housekeeping follow-up commit messages should be removed from the final squash commit message so the final commit message reflects the validated change set.
+
+Verification happens at engineer review and merge time, upstream of `main`. Because non-`agent/` branches only receive engineer-verified merges, only verified commits can land in `feature/` and then in `main`.
