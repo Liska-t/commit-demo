@@ -7,5 +7,4 @@
 - If no obvious `feature/` branch exists, or if more than one plausible `feature/` branch exists, the agent must ask the engineer to create or specify the correct branch before proceeding.
 - An obvious `feature/` branch is one whose name starts with `feature/`, clearly matches the task scope, and has no equally plausible competing `feature/` branch.
 - If GitHub MCP tooling cannot amend an existing commit, the agent may add a follow-up commit on the same `agent/` PR branch.
-- During squash merge, follow-up housekeeping commit messages should be removed from the final squash commit message.
 - Human reviewers decide when to merge `agent/` PRs into `feature/` branches.
