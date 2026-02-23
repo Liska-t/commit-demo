@@ -42,7 +42,7 @@ export default function App() {
               key={key}
               type="button"
               className={page === key ? 'nav-button active' : 'nav-button'}
-              onClick={() => setPage(key)}
+              onClick={() => setPage(key as PageKey)}
             >
               {value.navLabel}
             </button>
