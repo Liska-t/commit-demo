@@ -9,3 +9,6 @@ TLDR:
     Does everyone use `git stash`?)
 - No different for quick fixes/changes. Make the change, PR, if further commits are necessary simply
   `amend` and `push -f`or `fixup` before merging.
+
+## Integration Test
+- Arbitrary change added on 2026-02-23 to validate GitHub MCP PR flow.
