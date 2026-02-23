@@ -4,11 +4,17 @@ import './App.css'
 export default function App() {
   const [page, setPage] = useState('agenda')
 
+  const titleByPage = {
+    agenda: 'AGENDA',
+    practises: 'Practises',
+    'agent-rules': 'Agent Rules',
+  }
+
   return (
     <main className="app">
       <header className="hero">
         <p className="eyebrow">commit-demo</p>
-        <h1>{page === 'agenda' ? 'AGENDA' : 'Practises'}</h1>
+        <h1>{titleByPage[page]}</h1>
         <nav className="nav">
           <button
             type="button"
@@ -23,6 +29,13 @@ export default function App() {
             onClick={() => setPage('practises')}
           >
             Practises
+          </button>
+          <button
+            type="button"
+            className={page === 'agent-rules' ? 'nav-button active' : 'nav-button'}
+            onClick={() => setPage('agent-rules')}
+          >
+            Agent Rules
           </button>
         </nav>
       </header>
@@ -54,7 +67,7 @@ export default function App() {
             </li>
           </ul>
         </section>
-      ) : (
+      ) : page === 'practises' ? (
         <section className="panel">
           <h2>Single commit with explanation in commit msg body</h2>
           <ul>
@@ -103,6 +116,74 @@ export default function App() {
                 <p>
                   If working on the same branch as someone else, communicate
                   before force pushing.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      ) : (
+        <section className="panel">
+          <h2>Agent Branch Workflow Rules</h2>
+          <ul>
+            <li>
+              <div className="li-content">
+                <p>Never commit directly to any `feature/` branch.</p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>Never create new `feature/` branches.</p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>Agent work must use branches prefixed with `agent/`.</p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>
+                  Each `agent/` branch must be created from the target
+                  `feature/` branch.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>
+                  PRs from `agent/` branches must target that originating
+                  `feature/` branch.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>
+                  Under no circumstances may an agent edit or otherwise change
+                  any branch that is not prefixed with `agent/`.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>On `agent/` branches, the agent may work freely.</p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>
+                  If no relevant `feature/` branch is available, or if it is
+                  unclear which one should be used, the agent must ask the
+                  engineer to open one or clarify the correct target before
+                  proceeding.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div className="li-content">
+                <p>
+                  Human reviewers decide when to merge `agent/` PRs into
+                  `feature/` branches.
                 </p>
               </div>
             </li>
