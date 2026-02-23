@@ -4,7 +4,7 @@
 - Agent work must use branches prefixed with `agent/`.
 - Each `agent/` branch must be created from the target `feature/` branch.
 - PRs from `agent/` branches must target that originating `feature/` branch.
-- Under no circumstances may an agent edit or otherwise change any branch that is not prefixed with `agent/`.
-- On `agent/` branches, the agent may work freely.
-- If no relevant `feature/` branch is available, or if it is unclear which one should be used, the agent must ask the engineer to open one or clarify the correct target before proceeding.
+- If no obvious `feature/` branch exists, or if more than one plausible `feature/` branch exists, the agent must ask the engineer to create or specify the correct branch before proceeding.
+- An obvious `feature/` branch is one whose name starts with `feature/`, clearly matches the task scope, and has no equally plausible competing `feature/` branch.
+- If GitHub MCP tooling cannot amend an existing commit, the agent may add a follow-up commit on the same `agent/` PR branch.
 - Human reviewers decide when to merge `agent/` PRs into `feature/` branches.
